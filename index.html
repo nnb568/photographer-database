@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photographer Client Database</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📸 Client Database</h1>
+            <p class="subtitle">Manage your photography clients</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Search and Filter Section -->
+            <section class="search-section">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search clients by name, email, or phone..." class="search-input">
+                    <button id="searchBtn" class="btn btn-secondary">Search</button>
+                </div>
+            </section>
+
+            <!-- Add/Edit Client Form -->
+            <section class="form-section">
+                <h2 id="formTitle">Add New Client</h2>
+                <form id="clientForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="clientName">Name *</label>
+                            <input type="text" id="clientName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="clientEmail">Email *</label>
+                            <input type="email" id="clientEmail" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="clientPhone">Phone</label>
+                            <input type="tel" id="clientPhone">
+                        </div>
+                        <div class="form-group">
+                            <label for="clientDate">Session Date</label>
+                            <input type="date" id="clientDate">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="clientType">Session Type</label>
+                            <select id="clientType">
+                                <option value="portrait">Portrait</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="event">Event</option>
+                                <option value="family">Family</option>
+                                <option value="commercial">Commercial</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="clientStatus">Status</label>
+                            <select id="clientStatus">
+                                <option value="inquiry">Inquiry</option>
+                                <option value="booked">Booked</option>
+                                <option value="completed">Completed</option>
+                                <option value="delivered">Delivered</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="clientNotes">Notes</label>
+                        <textarea id="clientNotes" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="submitBtn">Add Client</button>
+                        <button type="button" class="btn btn-secondary" id="cancelBtn" style="display: none;">Cancel</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Clients List -->
+            <section class="clients-section">
+                <div class="section-header">
+                    <h2>Clients</h2>
+                    <div class="stats">
+                        <span id="clientCount">0 clients</span>
+                    </div>
+                </div>
+                <div id="clientsList" class="clients-list"></div>
+                <div id="emptyState" class="empty-state">
+                    <p>📋 No clients yet. Add your first client above!</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
