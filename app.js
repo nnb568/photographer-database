@@ -46,8 +46,16 @@ class ClientDatabase {
     }
 
     handleFormSubmit() {
+        let createdAt;
+        if (this.editingId) {
+            const existingClient = this.clients.find(c => c.id === this.editingId);
+            createdAt = existingClient ? existingClient.createdAt : new Date().toISOString();
+        } else {
+            createdAt = new Date().toISOString();
+        }
+
         const client = {
-            id: this.editingId || Date.now().toString(),
+            id: this.editingId || `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
             name: document.getElementById('clientName').value.trim(),
             email: document.getElementById('clientEmail').value.trim(),
             phone: document.getElementById('clientPhone').value.trim(),
@@ -55,7 +63,7 @@ class ClientDatabase {
             type: document.getElementById('clientType').value,
             status: document.getElementById('clientStatus').value,
             notes: document.getElementById('clientNotes').value.trim(),
-            createdAt: this.editingId ? this.clients.find(c => c.id === this.editingId).createdAt : new Date().toISOString(),
+            createdAt: createdAt,
             updatedAt: new Date().toISOString()
         };
 
@@ -126,7 +134,7 @@ class ClientDatabase {
         const filtered = this.clients.filter(client => {
             return client.name.toLowerCase().includes(term) ||
                    client.email.toLowerCase().includes(term) ||
-                   (client.phone && client.phone.includes(term)) ||
+                   (client.phone && client.phone.toLowerCase().includes(term)) ||
                    client.type.toLowerCase().includes(term) ||
                    client.status.toLowerCase().includes(term);
         });
